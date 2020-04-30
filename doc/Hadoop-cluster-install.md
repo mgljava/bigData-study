@@ -40,7 +40,7 @@ mv hadoop-2.10.0 hadoop
 vim /etc/profile 加入以下两行
 
 export HADOOP_HOME=/usr/local/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin:%HADOOP_HOME/sbin
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 使配置生效,执行下面命令
 source /etc/profile
