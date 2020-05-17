@@ -10,6 +10,7 @@ public class WorldCountReduce extends Reducer<Text, IntWritable, Text, IntWritab
   private final IntWritable result = new IntWritable();
 
   // 相同的key为一组，调用一次reduce方法
+  @Override
   public void reduce(Text key, Iterable<IntWritable> values,
       Context context) throws IOException, InterruptedException {
     int sum = 0;
