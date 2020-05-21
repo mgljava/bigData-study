@@ -1,4 +1,4 @@
-package com.github.mgljava.mr;
+package com.github.mgljava.mr.wordcount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

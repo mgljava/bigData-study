@@ -1,4 +1,4 @@
-package com.github.mgljava.mr;
+package com.github.mgljava.mr.wordcount;
 
 import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;
