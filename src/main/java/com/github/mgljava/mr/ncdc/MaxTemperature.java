@@ -32,5 +32,7 @@ public class MaxTemperature {
 
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(IntWritable.class);
+
+    job.waitForCompletion(true);
   }
 }
