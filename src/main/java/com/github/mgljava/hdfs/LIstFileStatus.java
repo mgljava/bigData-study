@@ -11,7 +11,8 @@ public class LIstFileStatus {
 
     FileSystem fileSystem = FileSystem.get(new Configuration());
 
-    FileStatus[] fileStatuses = fileSystem.listStatus(new Path("/software"));
+    FileStatus[] fileStatuses = fileSystem.listStatus(new Path("/software"),
+        path -> path.getName().endsWith("gz"));
 
     for (FileStatus fileStatus : fileStatuses) {
       System.out.println(fileStatus.getReplication());
