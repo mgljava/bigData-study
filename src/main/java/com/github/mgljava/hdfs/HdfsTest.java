@@ -11,7 +11,12 @@ import org.apache.hadoop.fs.RemoteIterator;
 
 public class HdfsTest {
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
+    // fileTest();
+    deleteFile(new Path("/data/ncdc/output"));
+  }
+
+  private static void fileTest() throws IOException {
     FileSystem fileSystem = FileSystem.get(new Configuration());
     FSDataInputStream dataInputStream = fileSystem.open(new Path("/aa/kms.sh"));
     System.out.println((char) dataInputStream.readByte());
@@ -31,5 +36,14 @@ public class HdfsTest {
         System.out.println(b);
       }
     }
+  }
+
+  public static void deleteFile(Path path) throws Exception {
+    FileSystem fileSystem = FileSystem.get(new Configuration(true));
+
+    // 第二个参数为true代表递归删除, 如果第一个参数为文件或空目录,那么第二个参数将被忽略
+    boolean delete = fileSystem.delete(path, true);
+
+    System.out.println("delete result: " + delete);
   }
 }
