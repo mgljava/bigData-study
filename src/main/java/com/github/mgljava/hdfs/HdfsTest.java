@@ -1,9 +1,11 @@
 package com.github.mgljava.hdfs;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.BlockLocation;
 import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.LocatedFileStatus;
 import org.apache.hadoop.fs.Path;
@@ -13,7 +15,8 @@ public class HdfsTest {
 
   public static void main(String[] args) throws Exception {
     // fileTest();
-    deleteFile(new Path("/data/ncdc/output"));
+    // deleteFile(new Path("/data/ncdc/output"));
+    createFile(new Path("/test/input/test.txt"));
   }
 
   private static void fileTest() throws IOException {
@@ -45,5 +48,15 @@ public class HdfsTest {
     boolean delete = fileSystem.delete(path, true);
 
     System.out.println("delete result: " + delete);
+  }
+
+  // 创建文件
+  public static void createFile(Path path) throws Exception {
+    FileSystem fileSystem = FileSystem.get(new Configuration(true));
+
+    FSDataOutputStream outputStream = fileSystem.create(path);
+    outputStream.write("content".getBytes(StandardCharsets.UTF_8));
+    outputStream.flush();
+    outputStream.hsync(); // 强制刷新,对所有reader可见,保证了数据的一致性
   }
 }
