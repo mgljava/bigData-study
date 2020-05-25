@@ -5,7 +5,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-public class LIstFileStatus {
+public class ListFileStatus {
 
   public static void main(String[] args) throws Exception {
 
