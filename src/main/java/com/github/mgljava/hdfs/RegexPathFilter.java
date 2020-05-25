@@ -6,6 +6,9 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;
 
+/**
+ * 正则表达式匹配和过滤器
+ */
 public class RegexPathFilter {
 
   public static void main(String[] args) throws Exception {
