@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property>
+        <name>color</name>
+        <value>yellow</value>
+    </property>
+    <property>
+        <name>size</name>
+        <value>10</value>
+    </property>
+    <property>
+        <name>weight</name>
+        <value>heavy</value>
+    </property>
+    <property>
+        <name>size-weight</name>
+        <value>${size},${weight}</value>
+    </property>
+</configuration>
