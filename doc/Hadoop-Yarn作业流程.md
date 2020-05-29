@@ -34,3 +34,19 @@
 1. 任务推测执行: 如果一个任务执行时间比预期慢,那么Hadoop会启动另一个相同的任务作为备份,这就是任务的推测执行
 2. OutputCommitter: 用来确保作业和任务都完全成功或失败,默认为FileOutputCommitter. 包含执行成功的_SUCCESS 文件和临时文件的创建
 3. JVM重用
+
+### MapReduce的类型与格式
+##### Map和Reduce的输入和输出格式
+1. map:(K1,V1) -> list(K2,V2)
+2. reduce:(K2, list(V2)) -> list(K3,V3)
+
+##### 输入格式
+1. FileInputFormat: 使用文件作为数据源,如HDFS. 还将处理输入的分片
+2. CombineFileInputFormat: 将多个小文件打包成一个大文件提供给map作为输入
+3. SequenceFile: 将大量小文件合并为一个或多个大文件,减少namenode内存的存储空间
+4. 不切分文件的分片:可以设置分片大小为文件的大小或者重写FileInputFormat类的isSplitable()方法返回false即可
+5. WholeFileInputFormat: 将整个文件的内容作为一行来处理
+
+#### Hadoop Stream
+1. Hadoop Stream是Hadoop的一个工具
+2. 用法: `hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.10.0.jar -input /test/input/test.txt -output /test/output2 -mapper /bin/cat -reducer /usr/bin/wc`
