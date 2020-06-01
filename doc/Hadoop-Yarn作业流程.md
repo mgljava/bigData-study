@@ -57,6 +57,11 @@
 ##### 多个输入
 1. MultipleInputs: 针对多个数据源,或者多种输入格式来采用多个mapper进行分析时,需要使用MultipleInputs.addInputPath()
 
+##### 数据库输入和输出
+1. DBInputFormat/DBOutputFormat: 操作关系型数据库
+2. TableInputFormat/TableOutputFormat: 操作HBase数据库
+3. 如果要在数据库和HDFS之间导数据,可以采用 Sqoop工具
+
 #### Hadoop Stream
 1. Hadoop Stream是Hadoop的一个工具
 2. 用法: `hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.10.0.jar -input /test/input/test.txt -output /test/output2 -mapper /bin/cat -reducer /usr/bin/wc`
