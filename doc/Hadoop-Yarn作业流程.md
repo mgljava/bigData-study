@@ -47,6 +47,16 @@
 4. 不切分文件的分片:可以设置分片大小为文件的大小或者重写FileInputFormat类的isSplitable()方法返回false即可
 5. WholeFileInputFormat: 将整个文件的内容作为一行来处理
 
+##### 文本输入
+1. TextInputFormat: TextInputFormat是默认的InputFormat,每条记录就是一行输入,键是LongWritable类型,存放该行在整个文件中的偏移量,值是该行的内容.
+2. KeyValueTextInputFormat
+3. NLineInputFormat: 以行为单位进行map的输入,如果N为1(默认),那么每个map就收到一个行的输入.可用于数据源的定义,如一行定义一个数据源,然后每个map接受一个数据源进行处理
+4. StreamXMLRecordReader: 处理XML数据的读取器
+5. 二进制输入: SequenceFileInputFormat, SequenceFileAsTextInputFormat, SequenceFileAsBinaryInputFormat
+
+##### 多个输入
+1. MultipleInputs: 针对多个数据源,或者多种输入格式来采用多个mapper进行分析时,需要使用MultipleInputs.addInputPath()
+
 #### Hadoop Stream
 1. Hadoop Stream是Hadoop的一个工具
 2. 用法: `hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.10.0.jar -input /test/input/test.txt -output /test/output2 -mapper /bin/cat -reducer /usr/bin/wc`
