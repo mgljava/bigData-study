@@ -62,6 +62,9 @@
 2. TableInputFormat/TableOutputFormat: 操作HBase数据库
 3. 如果要在数据库和HDFS之间导数据,可以采用 Sqoop工具
 
+##### 输出格式
+1. 
+
 #### Hadoop Stream
 1. Hadoop Stream是Hadoop的一个工具
 2. 用法: `hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.10.0.jar -input /test/input/test.txt -output /test/output2 -mapper /bin/cat -reducer /usr/bin/wc`
