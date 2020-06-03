@@ -25,6 +25,7 @@
   - 多输入
   - 辅助排序
 
-### 数据集
+### MapReduce库类
+1. ChainMapper、ChainReducer
 
 
