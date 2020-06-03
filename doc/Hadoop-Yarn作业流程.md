@@ -66,7 +66,7 @@
 1. TextOutputFormat: 文本输出（默认输出格式），将每条记录写成文本行。键值对采用制表符分隔
 2. 二进制输出：SequenceFileOutputFormat
 3. 多个输出： MultipleOutputFormat
-4. 延迟输出：可以保证指定分区第一条记录输出时才真正的创建文件
+4. 延迟输出：LazyOutputFormat 可以保证指定分区第一条记录输出时才真正的创建文件
 
 #### Hadoop Stream
 1. Hadoop Stream是Hadoop的一个工具
