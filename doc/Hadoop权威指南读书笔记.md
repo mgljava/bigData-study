@@ -98,3 +98,35 @@
   - tuple：任何类型的字段序列
   - bag：元组的无序的多重集合
   - map：键值对的集合
+##### Pig Latin函数
+1. 计算函数：获取一个或多个表达式作为输入，并返回另一个表达式
+  - AVG
+  - CONCAT
+  - SUM
+  - MAX
+  - COUNT等等
+2. 过滤函数：返回一个boolean值，被FILTER操作用于移除不需要的行
+  - ISEmpty
+3. 加载函数：指明如何从外部存储加载数据到一个关系
+4. 存储函数：指明将一个关系的数据存储到外部存储
+  - PigStorage
+  - BinStorage
+  - TextLoader
+  - JsonLoader
+  - HBaseStorage
+
+##### 宏
+1. 定义宏：DEFINE
+2. 使用宏
+
+##### 用户自定义函数
+1. 定义函数
+2. 编写函数
+3. 打包、编译
+4. 注册jar包到pig得搜索路径上
+5. 取别名：DEFINE isGood com.github.mgljava.pig.IsGoodQuality();
+6. 自定义过滤函数： com.github.mgljava.pig.IsGoodQuality();
+7. 自定义计算函数： com.github.mgljava.pig.Trim();
+8. 动态调用：InvokeForString、InvokeForInt、Long、Double、Float等等
+9. 动态调用的用法：DEFINE trim InvokeForString('org.apache.commons.lang.StringUtils.trim', 'String'); 第一个参数代表调用的方法是哪个类下的哪个方法，第二个参数是返回值的类型
+10. 自定义加载函数：
