@@ -61,4 +61,14 @@
 
 ##### Pig Latin
 1. Pig Latin由一系列的“操作”和“变换”组成
-2. 
+2. 在Pig内部，将这些操作和变换转换为一系列的MapReduce作业
+3. grunt: grunt是与pig进行交互的外壳程序
+
+##### 执行类型
+1. 本地模式：pig -x local
+2. MapReduce模式：pig 直接执行，默认为MapReduce模式
+
+##### 运行Pig程序
+1. 脚本: 直接运行pig代码，如 pig script.pig
+2. Grunt: 如果没有指明pig要运行的文件，或者没有使用-e选项，pig就会启动grunt，在grunt中，可以通过run和exec命令来运行pig脚本
+3. 嵌入式方法：可以通过PigServer类来运行Pig程序。或者通过PigRunner以编程的方式来使用grunt
