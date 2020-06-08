@@ -129,4 +129,26 @@
 7. 自定义计算函数： com.github.mgljava.pig.Trim();
 8. 动态调用：InvokeForString、InvokeForInt、Long、Double、Float等等
 9. 动态调用的用法：DEFINE trim InvokeForString('org.apache.commons.lang.StringUtils.trim', 'String'); 第一个参数代表调用的方法是哪个类下的哪个方法，第二个参数是返回值的类型
-10. 自定义加载函数：
+10. 自定义加载函数
+
+### 数据处理操作
+##### 数据加载和存储
+##### 数据过滤
+1. FOREACH...GENERATE: b = FOREACH a GENERATE $0+2,'Const';
+2. STREAM
+3. 数据分组和连接
+  - join：C = JOIN A BY $0, B BY $1
+  - COGROUP：创建一个嵌套的输出元组集合：D = COGROUP A BY $0, B BY $1;
+  - CROSS：对所有元组进行连接：I = CROSS A,B
+  - GROUP：对元组进行分组：B = GROUP A BY SIZE($1);
+4. 数据排序：B = ORDER A BY $0, $1 DESC;
+5. 数据组合和切分
+  - UNION：C = UNION A, B
+  - SPLIT：UNION的反向操作，拆分元组
+
+### Pig实战
+1. 并行处理，设置Reduce的个数。Map的个数由输入分片决定
+2. 参数代换：$input, $output. 在运行脚本时直接采用 pig -param input=/ -param output=/ code/script.pig
+3. -param_file
+4. 当前系统日期：-param output=/tmp/`date "+%y-%m-%d" `/out
+5. -dryrun模式
