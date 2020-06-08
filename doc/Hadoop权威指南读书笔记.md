@@ -72,3 +72,29 @@
 1. 脚本: 直接运行pig代码，如 pig script.pig
 2. Grunt: 如果没有指明pig要运行的文件，或者没有使用-e选项，pig就会启动grunt，在grunt中，可以通过run和exec命令来运行pig脚本
 3. 嵌入式方法：可以通过PigServer类来运行Pig程序。或者通过PigRunner以编程的方式来使用grunt
+
+##### Pig Latin程序设计
+1. 结构：一条语句理解为一个操作
+2. 语句：Pig Latin程序运行时，每个命令按次序进行解析，如果遇到错误，解释器中止运行。解释器会给每个关系操作建立“逻辑计划”，并不会真正的执行，只有遇到STORE命令或者DUM命令才会编译为物理执行
+3. 表达式
+  - 常数: 1.0 'a'
+  - 字段$0: 第0个位置的元素
+  - 投影：c.f records.year
+  - Map查找: m#k records.year#'2012'
+  - 算术: +-*/% 
+  - 条件：x ? y : z
+  - 比较：> < = != (x is null)(x is not null)
+  - 布尔：(x or y) (x and y) (not x)
+  - 函数：isGood(quality)
+  - 平面化：FLATTEN(f),从包和元组中去除嵌套, FLATTEN(group)
+4. 基本类型
+  - int
+  - long
+  - float
+  - double
+  - bytearray,对应Java的byte数组
+  - chararray,对应Java的String类型
+5. 复杂类型
+  - tuple：任何类型的字段序列
+  - bag：元组的无序的多重集合
+  - map：键值对的集合
