@@ -152,3 +152,14 @@
 3. -param_file
 4. 当前系统日期：-param output=/tmp/`date "+%y-%m-%d" `/out
 5. -dryrun模式
+
+## 第12章 Hive
+### 安装Hive 2.3.7版本
+0: 安装范本：https://www.jianshu.com/p/2633be68177f  
+1. 下载Hive
+2. 解压hive
+3. 配置环境变量
+4. 先使用命令初始化schema，`schematool -dbType derby -initSchema`，该命令会创建 metastore_db 目录
+5. 使用hive命令进入hive交互式环境
+
+### 
