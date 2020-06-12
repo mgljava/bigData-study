@@ -162,4 +162,23 @@
 4. 先使用命令初始化schema，`schematool -dbType derby -initSchema`，该命令会创建 metastore_db 目录
 5. 使用hive命令进入hive交互式环境
 
-### 
+### Hive索引
+1. 紧凑索引
+2. 位图索引
+
+### Hive锁
+1. 表级锁
+2. 分区级锁
+
+### HiveQL
+##### 数据类型
+1. 基本数据类型：int float boolean double
+2. 复杂数据类型：array map struct
+
+### 表
+1. Hive的表在逻辑上由存储的数据和描述表中的数据形式的相关元数据组成
+2. hive把元数据放到metastore中
+
+##### 表的形式
+1. 托管表：创建表时，默认情况下Hive负责管理数据，意味着hive把数据移入它的"仓库目录",例如在HDFS上有一个文件 /internal.txt，如果采用托管表，那么在LOAD命令之后就会把该文件移动到Hive所管理的目录下。 /user/hive/warehouse
+2. 外部表：让Hive到仓库目录以外的位置访问数据
