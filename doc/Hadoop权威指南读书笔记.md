@@ -205,3 +205,22 @@
 3. 半连接查询：LEFT SEMI JOIN ... ON
 4. map链接：select t.*, a.* from tab1 t JOIN tab2 a ON(t.id = a.id)
 5. 子查询：通过SELECT嵌套查询，支持有限，只能出现在SELECT语句的FROM子句中
+
+##### 视图
+和MySQL视图类似，逻辑表示
+
+### 用户自定义函数(UDF)
+1. 必须采用Java编写
+2. 必须是UDF的子类
+3. 一个UDF必须至少实现了evaluate()方法，可以有多个，Hive在执行的时候会找到匹配的
+
+##### 函数分类
+1. 普通UDF：操作用于单行，并输出一行数据
+2. 用户定义聚集函数：接受多个数据输入行，产生一个数据输出行
+3. 用户定义表生成函数：作用于单个数据输入行，产生多个数据行->一个表作为输出
+
+##### 使用UDF
+1. 打成Jar包
+2. 在Hive环境下 ADD JAR /root/your-jar.jar
+3. 起别名：CREATE TEMPORARY FUNCTION strip AS 'com.github.mgljava.hive.Strip'，该别名在单个会话中有效，如果需要在每个会话中使用，可以采用在主目录创建 .hiverc 文件
+4. 使用UDF：SELECT strip('bee') FROM dummy;
