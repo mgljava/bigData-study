@@ -182,3 +182,26 @@
 ##### 表的形式
 1. 托管表：创建表时，默认情况下Hive负责管理数据，意味着hive把数据移入它的"仓库目录",例如在HDFS上有一个文件 /internal.txt，如果采用托管表，那么在LOAD命令之后就会把该文件移动到Hive所管理的目录下。 /user/hive/warehouse
 2. 外部表：让Hive到仓库目录以外的位置访问数据
+
+##### 分区
+1. 分区：一个表（如日志表）可以依照多个维度来进行分区，如时间、位置等等，还可以进行子分区，即根据时间分区后，再根据国家来进行分区
+2. 创建分区：分区是在创建表时通过关键字 PARTITIONED BY 语句定义：CREATE TABLE logs(ts BIGINT, line STRING) PARTITIONED BY (dt STRING, country STRING);
+3. 加载数据到分区：LOAD DATA LOCAL '/data/sample.txt' OVERWRITE INTO TABLE logs PARTITION (dt='2001-01-01', country='GB')
+
+##### 桶
+1. 创建桶：关键字 CLUSTERED BY实现：CREATE TABLE bucketed_users(id INT, name STRING) CLUSTERED BY(id) INTO 4 buckets;
+2. 计算桶：针对以上的创建表的请求，利用用户ID来确定如何划分桶（HIVE对值进行哈希并将结果除以桶的个数取余数）
+
+##### 存储格式
+1. 行格式：指明一行中的字段如何存储
+2. 文件格式：指一行中字段容器的格式，最简单的格式是纯文本文件
+
+##### CREATE TABLE ... AS SELECT
+将查询的输出结果存放到新的表采用 CTAS
+
+##### 查询数据
+1. 内连接查询：JOIN ... ON
+2. 外连接查询：LEFT OUTER JOIN ... ON
+3. 半连接查询：LEFT SEMI JOIN ... ON
+4. map链接：select t.*, a.* from tab1 t JOIN tab2 a ON(t.id = a.id)
+5. 子查询：通过SELECT嵌套查询，支持有限，只能出现在SELECT语句的FROM子句中
