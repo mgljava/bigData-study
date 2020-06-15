@@ -224,3 +224,14 @@
 2. 在Hive环境下 ADD JAR /root/your-jar.jar
 3. 起别名：CREATE TEMPORARY FUNCTION strip AS 'com.github.mgljava.hive.Strip'，该别名在单个会话中有效，如果需要在每个会话中使用，可以采用在主目录创建 .hiverc 文件
 4. 使用UDF：SELECT strip('bee') FROM dummy;
+
+## 第13章 HBase
+HBase是一个在HDFS上开发的面向列的分布式数据库，如果需要实时的随机访问超大规模的大数据集，就可以使用HBase
+
+### 安装HBase
+1. 下载安装包
+2. 解压
+3. 配置HBASE_HOME
+4. 启动HBase  $HBASE_HOME/bin/start-hbase.sh 可以在16010端口访问HBase
+
+##### HBase shell
