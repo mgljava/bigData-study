@@ -252,3 +252,13 @@ HBase是一个在HDFS上开发的面向列的分布式数据库，如果需要�
 ##### HBase的模式设计
 1. 连接
 2. 行键
+
+## 第14章 Zookeeper
+Zookeeper是Hadoop的分布式协调服务，由于会出现部分失败，不过Zookeeper能对部分失败进行正确处理
+
+### Zookeeper特点
+1. Zookeeper是简单的，Zookeeper的核心是一个精简的文件系统，它提供一些简单的操作和一些额外的抽象的操作，例如：排序和通知
+2. Zookeeper是富有表现力的，Zookeeper的基本操作是一组丰富的"构建"，可用于实现多种协调数据结构和协议，例如：分布式队列，分布式锁和Leader的选举
+3. Zookeeper具有高可用性：Zookeeper运行在一组机器上，在设计上具有高可用性，可以避免单点故障
+4. Zookeeper采用松耦合交互方式
+5. Zookeeper是一个资源库
