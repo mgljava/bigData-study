@@ -262,3 +262,48 @@ Zookeeper是Hadoop的分布式协调服务，由于会出现部分失败，不�
 3. Zookeeper具有高可用性：Zookeeper运行在一组机器上，在设计上具有高可用性，可以避免单点故障
 4. Zookeeper采用松耦合交互方式
 5. Zookeeper是一个资源库
+
+### Zookeeper服务
+Zookeeper是一个具有高可用性的高性能协调服务
+
+##### 数据模型
+1. Zookeeper维护着一个树形层次结构，树中的节点被称为znode，znode可以用于存储数据，并且有一个与之关联的ACL（访问权限），一个znode能存储的数据被限制在1MB以内
+2. Zookeeper的数据访问具有原子性，读写操作都是要么全部成功，要么全部失败，不会出现部分失败的情况
+3. 路径访问必须以 / 开头的绝对路径
+4. znode的类型有短暂型和持久型，znode的类型在创建之后就不能再更改。短暂的znode不允许有子节点，并且在会话结束时删除
+5. 顺序号：可用于实现共享锁
+6. 观察：znode发生变化时，观察机制可以让客户端得到通知，观察只能触发一次，如果被触发了，需要重新注册观察
+
+##### 操作
+Zookeeper含有9种基本操作
+1. create：创建一个znode（父节点必须存在）
+2. delete：删除一个znode（该znode不能有任何子节点）
+3. exists：测试一个znode是否存在并且查询它的元数据
+4. getACL,setACL：获取/设置一个znode的ACL
+5. getChildren：获取一个znode的子节点列表
+6. getData,setData：获取/设置一个znode所保存的数据
+7. sync：将客户端的znode视图与Zookeeper同步
+
+##### 更新
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
