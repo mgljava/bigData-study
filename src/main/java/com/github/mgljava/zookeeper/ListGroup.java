@@ -20,7 +20,6 @@ public class ListGroup extends ConnectionWatcher {
       System.out.println("rc: " + rc);
       System.out.println("path: " + path);
     });
-    Thread.currentThread().join();
   }
 
   // exists
