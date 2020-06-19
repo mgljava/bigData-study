@@ -7,4 +7,4 @@
 6. [MapReduce高级特性](https://github.com/mgljava/bigData-study/blob/master/doc/MapReduce高级特性.md)
 
 ### Hive
-1. [Hive权威指南](https://github.com/mgljava/bigData-study/blob/master/doc/hive/Hive编程指南读书笔记.md)
+1. [Hive编程指南](https://github.com/mgljava/bigData-study/blob/master/doc/hive/Hive编程指南读书笔记.md)
