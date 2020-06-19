@@ -45,3 +45,32 @@
 2. 执行Hdfs的命令：dfs ls /;
 
 ## 第三章 数据类型和文件格式
+### 基本数据类型
+1. TINYINT：1 字节有符号整数
+2. SMALLINT：2 字节有符号整数
+3. INT：4 字节有符号整数
+4. BIGINT：8 字节有符号整数
+5. BOOLEAN：布尔类型
+6. FLOAT：单精度
+7. DOUBLE：双精度
+8. STRING：字符序列
+9. TIMESTAMP：整数
+10. BINARY：字节数组
+
+### 集合数据类型
+1. STRUCT：struct('john', 'joe')
+2. MAP：map('key1','value1','key2','value2')
+3. ARRAY：array('test','test2')
+
+### 文本文件数据编码
+##### 分隔符
+1. \n：换行分隔符
+2. ^A：用来分隔字段，八进制 \001表示
+3. ^B：用来分隔ARRAY或者STRUCT的字段，八进制 \002表示
+4. ^C：用来分隔MAP中的键值，八进制 \003表示
+5. 如果需要手动指定分隔符，那么需要采用 ROW FORMAT DELIMITED
+
+### 读时模式
+1. 传统数据库采用的是写时模式，就是在写入数据的时候就对结构和模式进行检查
+2. 而Hive采用读时模式，就是在查询数据室进行验证
+3. Hive会在读取是处理错误，如果不能处理，则将字段的值置为null
