@@ -28,10 +28,20 @@
 ```
 然后将MySQL的JDBC驱动放到类路径下，放到Hive的lib目录下.
 
-#### Hive的服务
+### Hive的服务
 1. cli：命令行
 2. hiveserver：HiveServer用来监听来自于其他进程的Thrift连接的一个守护进程
 3. hwi：Hive WebUI界面 2.0 被废弃
 4. jar
 5. metastore
 6. rcfilecat
+
+### .hiverc 文件 
+当cli启动时，先执行 .hiverc 文件，会自动执行该文件中的命令，如下：  
+`set hive.cli.print.current.db=true;`
+
+### 在Hive中执行命令
+1. Shell命令：加 ! 和； 结尾，如： !ls /root;
+2. 执行Hdfs的命令：dfs ls /;
+
+## 第三章 数据类型和文件格式
