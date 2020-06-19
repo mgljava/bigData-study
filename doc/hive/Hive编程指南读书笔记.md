@@ -74,3 +74,14 @@
 1. 传统数据库采用的是写时模式，就是在写入数据的时候就对结构和模式进行检查
 2. 而Hive采用读时模式，就是在查询数据室进行验证
 3. Hive会在读取是处理错误，如果不能处理，则将字段的值置为null
+
+## 第四章 HiveQL：数据定义
+### 数据库
+1. 创建数据库：CREATE DATABASE hive_study;
+2. 查看数据库：describe DATABASE hive_study;
+3. 删除数据库：DROP DATABASE hive_study; 如果数据库中存在表，那么需要先删除表，也可以在删除的时候加上关键字 CASCADE;
+4. 修改数据库：ALTER DATABASE hive_study;
+
+### 数据表
+1. 创建表：CREATE TABLE
+2. 复制表：create table hive_study.emp2 like hive_study.employees;

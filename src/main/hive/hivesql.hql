@@ -11,5 +11,9 @@ CREATE TABLE employees(
     subordinates ARRAY<STRING>,
     deductions MAP<STRING, FLOAT>,
     address STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>
-);
+) comment '员工表'
+    -- 指明表的元信息
+  tblproperties ('create-at'='me', 'create-date'='2020-06-20')
+    -- 指明存储路径
+  location '/usr/hive/warehouse/hive_study.db/employees';
 
