@@ -34,3 +34,14 @@ CREATE TABLE employees_partition
     address      STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>
 ) comment '员工分区表'
 PARTITIONED BY (country STRING, state STRING)
+
+-- 宝尊股票表
+create table baozun_stock(
+  stock_date STRING,
+  stock_open float,
+  stock_high float,
+  stock_low float,
+  stock_close float,
+  stock_ajd_close float,
+  stock_volume int
+) comment '宝尊股票表' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n';
