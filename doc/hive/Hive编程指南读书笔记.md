@@ -85,3 +85,12 @@
 ### 数据表
 1. 创建表：CREATE TABLE
 2. 复制表：create table hive_study.emp2 like hive_study.employees;
+
+### 外部表
+1. 采用 EXTERNAL 关键字
+2. create external table if not exists stocks();
+
+### 分区表
+1. 采用Partition By 定义
+2. 以目录来区分分区字段的信息
+3. 外部分区表
