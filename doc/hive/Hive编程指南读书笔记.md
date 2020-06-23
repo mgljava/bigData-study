@@ -36,6 +36,15 @@
 5. metastore
 6. rcfilecat
 
+### 通过 beeline链接hiveserver2
+1. 在hive启动hiveserver2服务, 需要查看启动日志
+2. 在其他节点通过beeline去连接，bin/beeline -u jdbc:hive2://vm01:10000 -n root
+3. 或者：
+  ```shell script
+    bin/beeline
+    ! connect jdbc:hive2://vm01:10000
+  ```
+
 ### .hiverc 文件 
 当cli启动时，先执行 .hiverc 文件，会自动执行该文件中的命令，如下：  
 `set hive.cli.print.current.db=true;`
