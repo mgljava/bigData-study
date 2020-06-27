@@ -27,6 +27,8 @@
 </configuration>
 ```
 然后将MySQL的JDBC驱动放到类路径下，放到Hive的lib目录下.
+### 初始化元数据
+schematool -dbType mysql -initSchema
 
 ### Hive的服务
 1. cli：命令行
