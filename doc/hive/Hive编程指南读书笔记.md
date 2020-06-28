@@ -119,3 +119,24 @@ schematool -dbType mysql -initSchema
 1. 启动HiveServer2
 2. beeline: beeline -u jdbc:hive2://localhost:10000 -n root
 3. beeline: !connect jdbc:hive2://localhost:10000 -n root
+
+
+
+## Hive一阶段总结
+1. Hive是数据仓库，主要是用来对历史数据做分析
+2. Hive的产生主要是为了非Java程序员做MR分析使用
+3. Hive是以HDFS为基础，所有的数据都存储在HDFS上，Hive的所有操作都是HDFS和MR操作
+4. Hive的搭建
+  - 本地模式（derby内存数据库），测试环境使用
+  - 单用户模式
+  - 多用户模式
+5. HiveSQL
+  - 数据库操作
+  - 表操作
+6. Hive分区：为了提高查询的效率，将数据文件存放到不同的目录，查询时只需要查询指定的目录
+7. SerDe、beeline、jdbc
+8. Hive函数
+  - udf：一进一出
+  - udaf：多进一出（聚合函数）
+  - udtf：一进多出（explode函数）
+  - 自定义函数
