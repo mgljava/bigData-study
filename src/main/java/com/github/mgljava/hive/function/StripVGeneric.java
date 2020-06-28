@@ -1,4 +1,4 @@
-package com.github.mgljava.hive;
+package com.github.mgljava.hive.function;
 
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;

@@ -222,7 +222,7 @@
 ##### 使用UDF
 1. 打成Jar包
 2. 在Hive环境下 ADD JAR /root/your-jar.jar
-3. 起别名：CREATE TEMPORARY FUNCTION strip AS 'com.github.mgljava.hive.Strip'，该别名在单个会话中有效，如果需要在每个会话中使用，可以采用在主目录创建 .hiverc 文件
+3. 起别名：CREATE TEMPORARY FUNCTION strip AS 'com.github.mgljava.hive.function.Strip'，该别名在单个会话中有效，如果需要在每个会话中使用，可以采用在主目录创建 .hiverc 文件
 4. 使用UDF：SELECT strip('bee') FROM dummy;
 
 ## 第13章 HBase

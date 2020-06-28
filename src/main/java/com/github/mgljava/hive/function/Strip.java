@@ -1,4 +1,4 @@
-package com.github.mgljava.hive;
+package com.github.mgljava.hive.function;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.hive.ql.exec.UDF;

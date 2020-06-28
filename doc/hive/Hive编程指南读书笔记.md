@@ -1,6 +1,7 @@
 # Hive编程指南
 ### Hive架构图
 ![Hive架构图](https://github.com/mgljava/bigData-study/blob/master/doc/images/Hive架构.png)
+
 ### metastore 元数据
 元数据一般采用内建数据库 derby数据库存储，不过在生产环境中一般采用MySQL存储，MySQL配置如下
 ```xml
@@ -111,3 +112,10 @@ schematool -dbType mysql -initSchema
 1. 采用Partition By 定义
 2. 以目录来区分分区字段的信息
 3. 外部分区表
+4. 添加分区时，必须在现有的分区之上
+5. 删除分区时，会将删除给定条件的分区
+
+### HiveServer2
+1. 启动HiveServer2
+2. beeline: beeline -u jdbc:hive2://localhost:10000 -n root
+3. beeline: !connect jdbc:hive2://localhost:10000 -n root
