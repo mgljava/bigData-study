@@ -29,37 +29,37 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  */
 public class Step2 {
 
-	
+
 	public static boolean run(Configuration config,Map<String, String> paths){
 		try {
 			FileSystem fs =FileSystem.get(config);
 			Job job =Job.getInstance(config);
 			job.setJobName("step2");
 			job.setJarByClass(StartRun.class);
-			job.setMapperClass(Step2_Mapper.class);
-			job.setReducerClass(Step2_Reducer.class);
+			job.setMapperClass(Step2Mapper.class);
+			job.setReducerClass(Step2Reducer.class);
 			job.setMapOutputKeyClass(Text.class);
 			job.setMapOutputValueClass(Text.class);
-			
+
 			FileInputFormat.addInputPath(job, new Path(paths.get("Step2Input")));
 			Path outpath=new Path(paths.get("Step2Output"));
 			if(fs.exists(outpath)){
 				fs.delete(outpath,true);
 			}
 			FileOutputFormat.setOutputPath(job, outpath);
-			
-			boolean f= job.waitForCompletion(true);
-			return f;
+
+			return job.waitForCompletion(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
-	 static class Step2_Mapper extends Mapper<LongWritable, Text, Text, Text>{
+
+	 static class Step2Mapper extends Mapper<LongWritable, Text, Text, Text>{
 
 		 //如果使用：用户+物品，同时作为输出key，更优
 		 //i161,u2625,click,2014/9/18 15:03
+		 @Override
 		protected void map(LongWritable key, Text value,
 				Context context)
 				throws IOException, InterruptedException {
@@ -69,15 +69,16 @@ public class Step2 {
 			String action =tokens[2];
 			Text k= new Text(user);
 			Integer rv =StartRun.R.get(action);
-			Text v =new Text(item+":"+ rv.intValue());
+			Text v =new Text(item+":"+ rv);
 			context.write(k, v);
 			//u2625    i161:1
 		}
 	}
-	
-	 
-	 static class Step2_Reducer extends Reducer<Text, Text, Text, Text>{
 
+
+	 static class Step2Reducer extends Reducer<Text, Text, Text, Text>{
+
+		@Override
 			protected void reduce(Text key, Iterable<Text> i,
 					Context context)
 					throws IOException, InterruptedException {
@@ -91,15 +92,15 @@ public class Step2 {
 				for(Text value :i){
 					String[] vs =value.toString().split(":");
 					String item=vs[0];
-					Integer action=Integer.parseInt(vs[1]);
-					action = ((Integer) (r.get(item)==null?  0:r.get(item))).intValue() + action;
+					int action=Integer.parseInt(vs[1]);
+					action = (r.get(item) == null ? 0 : r.get(item)) + action;
 					r.put(item,action);
 				}
 				StringBuffer sb =new StringBuffer();
 				for(Entry<String, Integer> entry :r.entrySet() ){
-					sb.append(entry.getKey()+":"+entry.getValue().intValue()+",");
+					sb.append(entry.getKey()).append(":").append(entry.getValue()).append(",");
 				}
-				
+
 				context.write(key,new Text(sb.toString()));
 			}
 		}

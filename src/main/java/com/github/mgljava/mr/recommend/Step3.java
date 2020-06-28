@@ -1,25 +1,20 @@
 package com.github.mgljava.mr.recommend;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.log4j.Logger;
+
 /**
  * 对物品组合列表进行计数，建立物品的同现矩阵
 i100:i100	3
@@ -41,9 +36,9 @@ public class Step3 {
 			Job job =Job.getInstance(config);
 			job.setJobName("step3");
 			job.setJarByClass(StartRun.class);
-			job.setMapperClass(Step3_Mapper.class);
-			job.setReducerClass(Step3_Reducer.class);
-			job.setCombinerClass(Step3_Reducer.class);
+			job.setMapperClass(Step3Mapper.class);
+			job.setReducerClass(Step3Reducer.class);
+			job.setCombinerClass(Step3Reducer.class);
 //			
 			job.setMapOutputKeyClass(Text.class);
 			job.setMapOutputValueClass(IntWritable.class);
@@ -56,17 +51,17 @@ public class Step3 {
 				fs.delete(outpath,true);
 			}
 			FileOutputFormat.setOutputPath(job, outpath);
-			
-			boolean f= job.waitForCompletion(true);
-			return f;
+
+			return job.waitForCompletion(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
 	
-	 static class Step3_Mapper extends Mapper<LongWritable, Text, Text, IntWritable>{
+	 static class Step3Mapper extends Mapper<LongWritable, Text, Text, IntWritable>{
 
+		@Override
 		protected void map(LongWritable key, Text value,
 				Context context)
 				throws IOException, InterruptedException {
@@ -87,8 +82,9 @@ public class Step3 {
 	}
 	
 	 
-	 static class Step3_Reducer extends Reducer<Text, IntWritable, Text, IntWritable>{
+	 static class Step3Reducer extends Reducer<Text, IntWritable, Text, IntWritable>{
 
+		@Override
 			protected void reduce(Text key, Iterable<IntWritable> i,
 					Context context)
 					throws IOException, InterruptedException {

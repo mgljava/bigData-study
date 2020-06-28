@@ -1,4 +1,6 @@
 # Hive编程指南
+### Hive架构图
+![Hive架构图](https://github.com/mgljava/bigData-study/blob/master/doc/images/Hive架构.png)
 ### metastore 元数据
 元数据一般采用内建数据库 derby数据库存储，不过在生产环境中一般采用MySQL存储，MySQL配置如下
 ```xml
@@ -100,6 +102,10 @@ schematool -dbType mysql -initSchema
 ### 外部表
 1. 采用 EXTERNAL 关键字
 2. create external table if not exists stocks();
+
+### 内部表和外部表的区别
+1. 外部表创建时需要指定数据存储的目录，而内部表的数据会存储到 warehouse目录下
+2. 删除时内部表会将数据和元数据一起删除，而外部表只会删除元数据，不会删除数据
 
 ### 分区表
 1. 采用Partition By 定义

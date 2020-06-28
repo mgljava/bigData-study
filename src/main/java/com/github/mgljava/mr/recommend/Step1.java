@@ -27,7 +27,7 @@ public class Step1 {
       job.setJobName("step1");
       job.setJarByClass(Step1.class);
       job.setMapperClass(Step1Mapper.class);
-      job.setReducerClass(Step1_Reducer.class);
+      job.setReducerClass(Step1Reducer.class);
 
       job.setMapOutputKeyClass(Text.class);
       job.setMapOutputValueClass(NullWritable.class);
@@ -39,8 +39,7 @@ public class Step1 {
       }
       FileOutputFormat.setOutputPath(job, outpath);
 
-      boolean f = job.waitForCompletion(true);
-      return f;
+      return job.waitForCompletion(true);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -59,7 +58,7 @@ public class Step1 {
   }
 
 
-  static class Step1_Reducer extends Reducer<Text, IntWritable, Text, NullWritable> {
+  static class Step1Reducer extends Reducer<Text, IntWritable, Text, NullWritable> {
 
     @Override
     protected void reduce(Text key, Iterable<IntWritable> i, Context context)
