@@ -26,6 +26,8 @@ create table dynamic_partition_source
 ) row format delimited fields terminated by ' '
     lines terminated by '\n';
 
+LOAD DATA LOCAL INPATH '../dynamic_partition.txt' into table dynamic_partition_source;
+
 // 分区表，通过动态分区计算后存储数据
 create table dynamic_partition_target
 (

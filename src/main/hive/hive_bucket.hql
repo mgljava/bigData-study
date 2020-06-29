@@ -21,6 +21,8 @@ CREATE TABLE bucket_source
 )
     ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
+LOAD DATA LOCAL INPATH '../bucket.txt' into table bucket_source;
+
 // 分桶表
 CREATE TABLE bucket_target
 (
