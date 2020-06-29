@@ -8,3 +8,4 @@
 
 ### Hive
 1. [Hive编程指南](https://github.com/mgljava/bigData-study/blob/master/doc/hive/Hive编程指南读书笔记.md)
+1. [Hive实现Word Count](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/wordcount.hql)
