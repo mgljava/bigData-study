@@ -12,6 +12,8 @@ java hello
 create table word_count(
     line string
 );
+-- 将数据加载到Hive仓库下
+LOAD DATA LOCAL INPATH '../wordcount.txt' into table word_count;
 
 -- word_count_result 存放结果集
 create table word_count_result(
