@@ -115,16 +115,17 @@ schematool -dbType mysql -initSchema
 4. 添加分区时，必须在现有的分区之上
 5. 删除分区时，会将删除给定条件的分区
 
-### Hive动态分区
-from source_table
-insert into target1
-select id,name,likes,address,age,sex
+### Hive分桶
+1. 分桶的目的是将同一目录下一个大文件拆为多个文件存储
+2. 分桶表是对列值取哈希值的方式，将不同的数据放到不同的文件中存储
+3. 对于Hive中的每一个表、分区都可以进一步分桶
+4. 由列的哈希值来除以桶的个数来决定每条数据划分在哪个桶
+5. 适用场景：数据抽样、map-join
 
 ### HiveServer2
 1. 启动HiveServer2
 2. beeline: beeline -u jdbc:hive2://localhost:10000 -n root
 3. beeline: !connect jdbc:hive2://localhost:10000 -n root
-
 
 
 ## Hive一阶段总结
