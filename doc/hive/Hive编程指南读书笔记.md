@@ -115,6 +115,11 @@ schematool -dbType mysql -initSchema
 4. 添加分区时，必须在现有的分区之上
 5. 删除分区时，会将删除给定条件的分区
 
+### Hive动态分区
+from source_table
+insert into target1
+select id,name,likes,address,age,sex
+
 ### HiveServer2
 1. 启动HiveServer2
 2. beeline: beeline -u jdbc:hive2://localhost:10000 -n root

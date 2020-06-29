@@ -1,12 +1,14 @@
 /*
 Hive 实现word count
-原始数据
+原始数据 wordcount.txt
+
 hello world hadoop
 hive spark hello sql
 hadoop spark hello
 hadoop
 sql
 java hello
+
 */
 -- word_count 表存储原始数据
 create table word_count(
