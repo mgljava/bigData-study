@@ -1,4 +1,4 @@
-package com.github.mgljava.spark
+package com.github.mgljava.spark.wc
 
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -28,18 +28,32 @@ object WordCount {
      * 数据会被RDD划分成为一系列的Partitions,分配到每个Partition的数据属于一个Task的处理范畴
      */
     // val line = sc.textFile("/emp/data/sample.txt", 1) // 读取本地的一个文件并且设置为1个partition
-    val line = sc.textFile("hdfs://192.168.56.102:9000/data/hive/sample.txt") // 指定HDFS的路径，这个也可以到时候在参数传入
-
+    // val line = sc.textFile("hdfs://192.168.56.102:9000/data/hive/sample.txt") // 指定HDFS的路径，这个也可以到时候在参数传入
+    val lines = sc.textFile("./data/spark/words")
     /**
      * 第4步：对初始的RDD进行Transformation级别的处理，例如Map、filter等高阶函数等的编程来进行具体的数据计算
      * 在对每一行的字符串拆分成单个单词
      * 在单词的拆分的基础上对每个单词实例计算为1，也就是word=>(word,1)
      * 在对每个单词实例计数为1基础上统计每个单词在文件中出现的总次数
      */
-    val worlds = line.flatMap(_.split("\t"))
+    val worlds = lines.flatMap(_.split(" "))
     val pairs = worlds.map(word => (word, 1))
     val wordCounts = pairs.reduceByKey(_ + _)
-    wordCounts.collect().foreach(wordNum => println(wordNum._1 + ":" + wordNum._2))
+
+    /**
+     * sortBy 排序
+     */
+    //  wordCounts.sortBy(word => word._2, ascending = false).foreach(wordNum => println(wordNum._1 + ":" + wordNum._2))
+
+    /**
+     * sortByKey 排序，先将tuple反转，在根据整形的key进行排序，然后在将排序的结果反转得到tuple
+     */
+    wordCounts.map(tuple => tuple.swap)
+      .sortByKey(ascending = false)
+      .map(tuple => tuple.swap)
+      .foreach(tuple => {
+        println(tuple._1 + ":" + tuple._2)
+      })
     sc.stop()
   }
 }
