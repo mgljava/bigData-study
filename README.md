@@ -11,3 +11,6 @@
 1. [Hive实现Word Count](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/wordcount.hql)
 1. [Hive实现数据动态分区](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/dynamic_partition.hql)
 1. [Hive实现分桶表](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/hive_bucket.hql)
+
+### Spark
+1. [Spark快速大数据分析](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark快速大数据分析读书笔记.md)
