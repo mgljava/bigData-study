@@ -19,6 +19,7 @@ HELP.md
 *.iml
 *.ipr
 /out/
+doc/ignoreImages
 
 ### NetBeans ###
 /nbproject/private/
