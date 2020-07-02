@@ -11,3 +11,6 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 3. RDD之间有依赖关系
 4. 分区器是作用在K.V格式的RDD上
 5. partition对外提供最佳的计算位置，利于数据处理的本地化
+
+##### 算子
+1. 理解为函数，例如 map、flatmap、count等等都是算子
