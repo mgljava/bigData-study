@@ -13,5 +13,5 @@
 1. [Hive实现分桶表](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/hive_bucket.hql)
 
 ### Spark
-1. [Spark集群搭建和提交任务](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark集群搭建.md)
+1. [Spark集群搭建和提交任务](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark集群搭建以及提交任务.md)
 2. [Spark快速大数据分析](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark快速大数据分析读书笔记.md)
