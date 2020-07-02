@@ -55,4 +55,11 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
   - 切断RDD的依赖关系
   - 优化：对RDD checkpoint之前，最好先cache下
   
-### Spark 提交任务
+### Spark 运行模式和提交任务
+##### standalone
+运行模式
+1. client: `./spark-submit --master spark://vm01:7077 --deploy-mode client  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
+2. cluster: `./spark-submit --master spark://vm01:7077 --deploy-mode cluster  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
+
+##### yarn
+##### mesos
