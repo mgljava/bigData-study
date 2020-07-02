@@ -27,7 +27,7 @@ Spark 中的 RDD 就是一个不可变的分布式对象集合。每个 RDD 都�
   - cartesian(other) ：计算两个 RDD 的笛卡儿积
   
 2. 行动操作(action)：行动操作会对RDD计算出一个结果，并把结果返回到驱动器程序或者存储到外部存储系统(如HDFS)
-  - count操作
+  - count操作：会将结果回收到Driver端（程序端）
   - first操作
   - take(num:Int)：返回 RDD 中的 n 个元素
   - reduce()：它接收一个函数作为参数，这个 函数要操作两个 RDD 的元素类型的数据并返回一个同样类型的新元素

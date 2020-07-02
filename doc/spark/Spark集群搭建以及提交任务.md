@@ -1,4 +1,4 @@
-### Spark 集群搭建(spark-2.4.6)
+### Spark Standalone 集群搭建(spark-2.4.6)
 
 #### 集群配置
 1. 准备集群的节点，我这里准备了三台节点，192.168.56.101(Master)主机名：node1，192.168.56.102(Worker)主机名：node2，192.168.56.101(Worker)主机名：node3
