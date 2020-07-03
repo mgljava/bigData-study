@@ -13,7 +13,8 @@ Spark 中的 RDD 就是一个不可变的分布式对象集合。每个 RDD 都�
 
 ##### 创建RDD
 1. 读取一个外部数据集: sc.textFile("README.md")
-2. 在驱动器程序里分发驱动器程 序中的对象集合(比如 list 和 set)
+2. sc.parallelize(List(1,2,3))
+3. sc.makeRDD(List(1,2,3))
 
 ##### RDD操作
 1. 转化操作(transformation)：转化操作会由一个RDD生成一个新的RDD，惰性求值
