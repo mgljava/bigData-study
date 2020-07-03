@@ -58,8 +58,50 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 ### Spark 运行模式和提交任务
 ##### standalone
 运行模式
-1. client: `./spark-submit --master spark://vm01:7077 --deploy-mode client  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
-2. cluster: `./spark-submit --master spark://vm01:7077 --deploy-mode cluster  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
+1. client
+  - 提交命令：`./spark-submit --master spark://vm01:7077 --deploy-mode client  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
+  - 步骤1：在客户端提交Application，Driver在客户端启动
+  - 步骤2：客户端向Master申请资源，Master返回Worker节点
+  - 步骤3：Driver向Worker节点发送task，监控task执行，回收结果
+2. cluster
+  - 提交命令：`./spark-submit --master spark://vm01:7077 --deploy-mode cluster  --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 100`
+  - 步骤1：在客户端提交application，首先客户端向Master申请启动Driver
+  - 步骤2：Master随机在一台Worker中启动Driver
+  - 步骤3：Driver启动之后，向Master申请资源，Master返回资源
+  - 步骤4：Driver发送task，监控task，回收结果
+3. Driver的功能
+  - 发送task
+  - 监控task
+  - 申请资源
+  - 回收结果
+   
+##### 基于YARN提交任务
+1. 停掉spark集群，就是关闭standalone模式
+2. 在spark-env.sh 中配置HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+3. 提交任务
+4. client模式
+  - 提交命令：`./spark-submit --master yarn --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 1`
+  - 步骤1：在客户端提交application，Driver会在客户端启动
+  - 步骤2：客户端向RM(ResourceManager)申请启动AM（ApplicationMaster）
+  - 步骤3：RM收到请求之后，随机在一台NM节点上启动AM
+  - 步骤4：AM启动之后，向RM申请资源，用于启动Executor
+  - 步骤5：RM收到请求之后，返回给AM一批NM节点
+  - 步骤6：AM连接NM启动Executor
+  - 步骤7：Executor启动之后反向注册给Driver
+  - 步骤8：Driver发送task，监控task，回收结果
 
-##### yarn
+5. cluster模式
+  - 提交命令：`./spark-submit --master yarn --deploy-model cluster --class org.apache.spark.examples.SparkPi ../examples/jars/spark-examples_2.11-2.4.6.jar 1`
+  - 步骤1：在客户端提交Application，首先客户端向RM申请启动AM
+  - 步骤2：RM收到请求之后，随机在一台NM节点上启动AM（Driver）
+  - 步骤3：AM启动之后，向RM申请资源，用于启动Executor
+  - 步骤4：RM收到请求之后，返回给AM一批NM节点
+  - 步骤5：AM连接NM启动Executor
+  - 步骤6：Executor启动之后反向注册给AM（Driver）
+  - 步骤7：ApplicationMaster（Driver）发送task，监控task，回收结果
+6. ApplicationMaster的功能
+  - 申请资源
+  - 启动Executor
+  - 任务调度（发送任务，监控，回收结果等等）
+
 ##### mesos
