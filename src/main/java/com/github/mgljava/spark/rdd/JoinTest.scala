@@ -17,6 +17,8 @@ object JoinTest {
     // rdd1.leftOuterJoin(rdd2).foreach(println)
 
     // rightOuterJoin 以右为主
-    rdd1.rightOuterJoin(rdd2).foreach(println)
+    // rdd1.rightOuterJoin(rdd2).foreach(println)
+
+    rdd1.fullOuterJoin(rdd2).foreach(println)
   }
 }
