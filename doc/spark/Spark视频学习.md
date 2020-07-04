@@ -30,8 +30,9 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 
 ##### RDD操作(JoinTest)
 1. join：按照两个RDD的key去关联
-2. leftOuterJoin
-3. rightOuterJoin
+2. leftOuterJoin：以左为主
+3. rightOuterJoin： 以右为主
+4. fullOuterJoin 两边连接
 
 ##### 算子
 理解为函数，例如 map、flatmap、count等等都是算子
