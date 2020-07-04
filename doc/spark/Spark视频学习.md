@@ -28,6 +28,11 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 4. 分区器是作用在K.V格式的RDD上
 5. partition对外提供最佳的计算位置，利于数据处理的本地化
 
+##### RDD操作(JoinTest)
+1. join：按照两个RDD的key去关联
+2. leftOuterJoin
+3. rightOuterJoin
+
 ##### 算子
 理解为函数，例如 map、flatmap、count等等都是算子
 1. Transformation：懒执行，需要action算子触发执行
