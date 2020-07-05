@@ -68,6 +68,14 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 2. RDD宽依赖（有shuffle）：父RDD与子RDD partition之间的关系是一对多
 3. 有shuffle就会有落地磁盘，就会有IO操作
   
+##### Stage
+1. stage由一组并行的task组成
+2. stage的并行度由final RDD的partition决定
+3. 如何提高stage并行度（增加shuffle类算子的分区数）：增加final RDD partition个数
+4. stage步骤中，管道中的数据何时落地？
+  - shuffle write
+  - 对RDD进行持久化：cache、persist、checkpoint
+
 ### Spark 运行模式和提交任务
 ##### standalone
 运行模式
