@@ -61,9 +61,12 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
   - 切断RDD的依赖关系
   - 优化：对RDD checkpoint之前，最好先cache下
   
-  ##### RDD的窄依赖和宽依赖
-  1. RDD窄依赖：父RDD与子RDD partition之间的关系是一对一
-  2. RDD宽依赖（有shuffle）：父RDD与子RDD partition之间的关系是一对多
+##### RDD的窄依赖和宽依赖
+1. RDD窄依赖
+  - 父RDD与子RDD partition之间的关系是一对一
+  - 父RDD与子RDD partition之间的关系是多对一
+2. RDD宽依赖（有shuffle）：父RDD与子RDD partition之间的关系是一对多
+3. 有shuffle就会有落地磁盘，就会有IO操作
   
 ### Spark 运行模式和提交任务
 ##### standalone
