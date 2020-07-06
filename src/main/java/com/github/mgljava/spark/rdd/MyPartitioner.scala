@@ -21,8 +21,8 @@ class MyPartitioner(number: Int) extends Partitioner {
     }
   }
 
-  override def equals(obj: Any): Boolean = {
+  /*override def equals(obj: Any): Boolean = {
     case my: MyPartitioner => my.numPartitions == numPartitions
     case _ => false
-  }
+  }*/
 }

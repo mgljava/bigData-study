@@ -3,6 +3,7 @@ HELP.md
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /target
+/data/spark/**/output
 
 ### STS ###
 .apt_generated

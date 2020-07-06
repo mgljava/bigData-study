@@ -52,3 +52,14 @@ Spark 中的 RDD 就是一个不可变的分布式对象集合。每个 RDD 都�
 2. 使用诸如filter()这样的转化操作对RDD进行转化，以定义新的RDD
 3. 告诉spark对需要被重用的中间结果RDD执行persist()操作
 4. 使用行动操作（例如count()和first()等）来触发一次并行计算，Spark会对计算进行优化后再执行
+
+### 第五章 数据读取与保存
+#####  文件格式：Spark 会根据文件扩展名选择对应的处理方式
+1. 文本文件：普通的文本文件，每行一条记录
+  - 读取文件：sc.textFile(...), sc.wholeTextFile(...)
+  - 保存文件：saveAsTextFile(dir),Spark 将传入的路径作为目录对待
+2. JSON
+3. CSV
+4. SequenceFiles
+5. Protocol buffers
+6. 对象文件
