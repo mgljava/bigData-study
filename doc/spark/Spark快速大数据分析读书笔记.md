@@ -59,8 +59,11 @@ Spark 中的 RDD 就是一个不可变的分布式对象集合。每个 RDD 都�
   - 读取文件：sc.textFile(...), sc.wholeTextFile(...)
   - 保存文件：saveAsTextFile(dir),Spark 将传入的路径作为目录对待
 2. JSON
-  - 读取JSON文件：
-3. CSV
+  - 读取JSON文件：ObjectMapper对象
+  - 存储json数据：saveAsTextFile(...)
+3. CSV:逗号分隔值与制表符分隔值
 4. SequenceFiles
+  - 读取：sc.sequenceFile(path="./data/spark/files/sequencefile", classOf[Text], classOf[IntWritable])
+  - 写入：saveAsSequenceFile
 5. Protocol buffers
 6. 对象文件

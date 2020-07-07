@@ -1,6 +1,10 @@
 ## Spark
 Spark是分布式计算框架，底层操作的就是RDD
 
+### Spark任务组成
+application => job => stage(如果失败，重试4次) => task(如果失败，重试3次)
+RDD Object => DAGScheduler => TaskScheduler => Worker
+
 ### Spark 与 MapReduce的区别
 1. Spark的迭代基于内存，MR基于磁盘
 2. Spark有DAG(有向无环图)执行引擎，执行速度快
@@ -18,6 +22,10 @@ Spark是分布式计算框架，底层操作的就是RDD
 4. 对得到的RDD对象使用 Transform类算子进行数据转换
 5. 使用 Action算子对 Transform类算子触发执行
 6. 关闭sc（sc.stop()）
+
+### application执行慢
+1. 有没有数据倾斜
+2. 有没有开启推测执行
 
 ### RDD
 RDD(Resilient Distributed Dataset), 弹性分布式数据集
