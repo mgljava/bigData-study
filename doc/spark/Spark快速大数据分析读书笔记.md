@@ -67,3 +67,18 @@ Spark 中的 RDD 就是一个不可变的分布式对象集合。每个 RDD 都�
   - 写入：saveAsSequenceFile
 5. Protocol buffers
 6. 对象文件
+  - 读取：objectFile
+  - 写入：saveAsObjectFile
+7. hadoop文件
+  - 读取：sc.newAPIHadoopFile、hadoopDataset、newAPIHadoopDataset
+  - 写入：saveAsNewAPIHadoopFile、saveAsHadoopDataSet、saveAsNewAPIHadoopDataset
+
+##### 文件系统
+1. 本地文件系统：(file:///home/root/test.txt)
+2. Amazon S3: s3n://bucket/path-within-bucket
+3. Hadoop: hdfs://master:port/path
+
+##### Spark SQL
+我们把一条 SQL 查询给 Spark SQL，让它对一个数据源执行查询(选出 一些字段或者对字段使用一些函数)，然后得到由 Row 对象组成的 RDD，每个 Row 对象 表示一条记录
+1. Apache Hive（SparkSQLHiveTest）：要把 Spark SQL 连接到已有的 Hive 上，你需要提供 Hive 的配置文件。你需要将 hive-site. xml 文件复制到 Spark 的 ./conf/ 目录下。这样做好之后，再创建出 HiveContext 对象，也 就是 Spark SQL 的入口，然后你就可以使用 Hive 查询语言(HQL)来对你的表进行查询， 并以由行组成的 RDD 的形式拿到返回数据
+2. JSON
