@@ -10,6 +10,7 @@
     <version>1.0</version>
     <modules>
         <module>spark-study</module>
+        <module>hive-study</module>
     </modules>
     <properties>
         <scala.binary.version>2.10</scala.binary.version>
