@@ -97,4 +97,30 @@ Spark 会自动重新执行失败的或较慢的任务来应对有错误的或�
 1. 对于要在行动操作中使用的累加器，Spark 只会把每个任务对各累加器的修改应用一次，所以为了得到可靠的累加器，我们必须要放在foreach这样的Action算子中
 2. 如果要在转换操作中使用累加器，那么最好是在调试的时候使用
 
+##### 自定义累加器
+通过扩展 AccumulatorParam来实现自定义累加器，累加器中的操作要满足交换律和结合律
+
 ##### 广播变量
+它可以让程序高效地向所有工作节点发送一个 较大的只读值，以供一个或多个 Spark 操作使用
+1. sc.broadcast(T)
+2. 广播变量的用法
+  - 调用SparkContext.broadcast创建一个Broadcast[T]对象
+  - 通过value属性访问该对象的值
+  - 变量只会被发到各个节点一次，应该作为只读来处理
+
+##### 基于分区进行操作
+1. mapPartitions: 该分区中元素的迭代器,返回的元素的迭代器
+2. mapPartitionsWithIndex:分区序号，以及每个分区中,返回的元素的迭代器 的元素的迭代器
+3. foreachPartitions:元素迭代器
+
+##### 数值RDD的操作
+Spark 的数值操作是通过流式算法实现的，允许以每次一个元素的方式构建出模型  
+1. StatsCounter
+  - count() RDD 中的元素个数 
+  - mean() 元素的平均值 
+  - sum() 总和
+  - max() 最大值
+  - min() 最小值
+  - variance() 元素的方差 sampleVariance() 从采样中计算出的方差 
+  - stdev() 标准差
+  - sampleStdev() 采样的标准差
