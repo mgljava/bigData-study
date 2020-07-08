@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.fileformat
+package com.github.mgljava.fileformat
 
 import org.apache.hadoop.io.Text
 import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat

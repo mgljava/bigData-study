@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.example
+package com.github.mgljava.example
 
 import org.apache.spark.{SparkConf, SparkContext}
 

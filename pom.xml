@@ -6,9 +6,14 @@
 
     <groupId>com.github.mgljava</groupId>
     <artifactId>bigData-study</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
+    <modules>
+        <module>spark-study</module>
+    </modules>
     <properties>
-        <scala.binary.version>2.12</scala.binary.version>
+        <scala.binary.version>2.10</scala.binary.version>
+        <jackson.version>2.6.0</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -75,8 +80,8 @@
         <!-- Apache Spark -->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.12</artifactId>
-            <version>2.4.6</version>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>2.2.0</version>
         </dependency>
 
         <dependency>
@@ -114,8 +119,26 @@
 
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-scala_2.12</artifactId>
-            <version>2.10.2</version>
+            <artifactId>jackson-module-scala_2.10</artifactId>
+            <version>2.6.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -129,57 +152,6 @@
             <groupId>com.janeluo</groupId>
             <artifactId>ikanalyzer</artifactId>
             <version>2012_u6</version>
-        </dependency>
-
-        <dependency> <!-- Spark dependency -->
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.12</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <dependency> <!-- Spark dependency -->
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_2.12</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <dependency> <!-- Cassandra -->
-            <groupId>com.datastax.spark</groupId>
-            <artifactId>spark-cassandra-connector_2.10</artifactId>
-            <version>1.0.0-rc5</version>
-        </dependency>
-        <dependency> <!-- Cassandra -->
-            <groupId>com.datastax.spark</groupId>
-            <artifactId>spark-cassandra-connector-java_2.10</artifactId>
-            <version>1.0.0-rc5</version>
-        </dependency>
-        <dependency> <!-- Elastic search connector -->
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-hadoop-mr</artifactId>
-            <version>2.0.0.RC1</version>
-        </dependency>
-        <dependency> <!-- Jetty demmo -->
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-client</artifactId>
-            <version>8.1.14.v20131031</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.6.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.12</artifactId>
-            <version>3.0.8</version>
         </dependency>
     </dependencies>
     <build>

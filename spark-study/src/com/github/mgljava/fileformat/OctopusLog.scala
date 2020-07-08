@@ -1,7 +1,7 @@
-package com.github.mgljava.spark.fileformat
+package com.github.mgljava.fileformat
 
 import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper}
-import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
+import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.spark.SparkContext
 
@@ -9,10 +9,10 @@ case class Log(thread: String, level: String, loggerName: String, message: Strin
 
 object OctopusLog {
   def main(args: Array[String]): Unit = {
-    val input = "/*/error*"
+    val input = "/Users/monk/Desktop/log/input/error*"
     val sc = new SparkContext(master = "local", appName = "OctopusLog")
     val logs = sc.wholeTextFiles(input)
-    val output = "/*/output"
+    val output = "/Users/monk/Desktop/log/output"
     val fileSystem = FileSystem.get(sc.hadoopConfiguration)
     if (fileSystem.exists(new Path(output))) {
       fileSystem.delete(new Path(output), true)
@@ -20,7 +20,7 @@ object OctopusLog {
     logs.map(item => {
       item._2.split("\n")
     }).flatMap(line => line).map(log => {
-      val mapper = new ObjectMapper() with ScalaObjectMapper
+      val mapper = new ObjectMapper()
       mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
       mapper.registerModule(DefaultScalaModule)
       mapper.readValue(log, classOf[Log])

@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.rdd
+package com.github.mgljava.rdd
 
 import java.net.URL
 

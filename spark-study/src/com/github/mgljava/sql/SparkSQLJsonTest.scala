@@ -1,12 +1,11 @@
-package com.github.mgljava.spark.sql
+package com.github.mgljava.sql
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
-import org.apache.spark.sql.hive.HiveContext
 
 object SparkSQLJsonTest {
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext("local", "SparkSQLHiveTest")
+    val sc = new SparkContext("local", "SparkSQLJsonTest")
     /*val hiveContext = new HiveContext(sc)
     val users = hiveContext.jsonFile("./data/spark/sql/user.json")
     users.registerTempTable("users")
@@ -15,7 +14,9 @@ object SparkSQLJsonTest {
       println(item)
     })*/
     val sqlContext = new SQLContext(sc)
-    // val result = sqlContext.read.json("./data/spark/sql/user.json")
-   // println(result)
+    val result = sqlContext.read.json("./data/spark/sql/user.json")
+    result.foreach(row => {
+      println(row.get(1))
+    })
   }
 }

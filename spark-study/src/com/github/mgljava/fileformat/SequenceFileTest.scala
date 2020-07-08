@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.fileformat
+package com.github.mgljava.fileformat
 
 import org.apache.hadoop.io.{IntWritable, Text}
 import org.apache.spark.{SparkConf, SparkContext}

@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.jdbc
+package com.github.mgljava.jdbc
 
 import java.sql.{DriverManager, ResultSet}
 

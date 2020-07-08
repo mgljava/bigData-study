@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.fileformat
+package com.github.mgljava.fileformat
 
 import java.io.StringReader
 

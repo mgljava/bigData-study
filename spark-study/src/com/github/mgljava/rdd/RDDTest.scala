@@ -1,4 +1,4 @@
-package com.github.mgljava.spark.rdd
+package com.github.mgljava.rdd
 
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}

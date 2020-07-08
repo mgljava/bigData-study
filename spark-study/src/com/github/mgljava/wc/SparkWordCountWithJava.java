@@ -1,7 +1,6 @@
-package com.github.mgljava.spark.wc;
+package com.github.mgljava.wc;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -38,7 +37,7 @@ public class SparkWordCountWithJava {
     /*
      * sc.textFile 读取文件
      */
-    JavaRDD<String> lines = sc.textFile("./words");
+    JavaRDD<String> lines = sc.textFile("./data/spark/words");
 
     /*
      * flatMap 进一条数据出多条数据，一对多关系
@@ -51,8 +50,8 @@ public class SparkWordCountWithJava {
       private static final long serialVersionUID = 1L;
 
       @Override
-      public Iterator<String> call(String line) {
-        return Arrays.asList(line.split(" ")).iterator();
+      public Iterable<String> call(String line) {
+        return Arrays.asList(line.split(" "));
       }
     });
 
