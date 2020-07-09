@@ -5,12 +5,12 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
  * 统计各个网站的访问次数
  */
-object PvUvTest {
+object PageViewTest {
 
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setMaster("local").setAppName("PvUvTest")
+    val conf = new SparkConf().setMaster("local").setAppName("PageViewTest")
     val sc = new SparkContext(conf)
-    val lines = sc.textFile("./data/*/pvuvdata")
+    val lines = sc.textFile("./data/pvuvdata")
     lines.cache()
     val webSites = lines.map(line => {
       val webSite = line.split("\t")(5)
