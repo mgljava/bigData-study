@@ -27,6 +27,16 @@ RDD Object => DAGScheduler => TaskScheduler => Worker
 1. 有没有数据倾斜
 2. 有没有开启推测执行
 
+### Spark资源申请
+##### 粗粒度资源申请（Spark）
+在application执行之前，会将所有资源申请完毕，申请到资源就执行application，申请不到就一直等待，所有的task执行完毕才会释放资源
+1. 优点
+2. 缺点
+
+-- 待补充 TODO
+
+##### 细粒度资源申请（MR）
+
 ### RDD
 RDD(Resilient Distributed Dataset), 弹性分布式数据集
 ##### RDD的五大特性

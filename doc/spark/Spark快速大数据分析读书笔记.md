@@ -127,7 +127,7 @@ Spark 的数值操作是通过流式算法实现的，允许以每次一个元�
 
 ### 第七章 在集群上运行Spark
 ##### Spark运行时架构
-Spark 集群采用的是主 / 从结构。在一个 Spark 集群中，有一个节点负责中央协调，调度各个分布式工作节点。这个中央协调节点被称为驱动器(Driver)节点， 101与之对应的工作节点被称为执行器(executor)节点
+Spark 集群采用的是主 / 从结构。在一个 Spark 集群中，有一个节点负责中央协调，调度各个分布式工作节点。这个中央协调节点被称为驱动器(Driver)节点，与之对应的工作节点被称为执行器(executor)节点
 ![Spark运行时架构](https://github.com/mgljava/bigData-study/blob/master/doc/images/spark运行时架构.png)
 1. 驱动器节点：Spark 驱动器是执行你的程序中的 main() 方法的进程
   - 把用户程序转为任务：Spark 驱动器程序负责把用户程序转为多个物理执行的单元，这些单元也被称为任务(task)
@@ -148,4 +148,19 @@ Spark 集群采用的是主 / 从结构。在一个 Spark 集群中，有一个�
 7. 如果驱动器程序的main方法退出或者调用了 sc.stop方法，驱动器程序终止执行器进程，并且通过集群管理器释放资源
 
 ##### 使用spark-submit部署应用
+spark-submit提交作业的一般格式：`bin/spark-submit [options] <app jar | python file> [app options]`
+1. --master 表示要连接的集群管理器
+2. --deploy-mode 选择在本地(客户端“client”)启动驱动器程序，还是在集群中的一台工作节点机 器(集群“cluster”)上启动
+3. --class 运行 Java 或 Scala 程序时应用的主类
+4. --name 应用的显示名，会显示在 Spark 的网页用户界面中
+5. --jars 需要上传并放到应用的 CLASSPATH 中的 JAR 包的列表。如果应用依赖于少量第三 方的 JAR 包，可以把它们放在这个参数里
+6. --files 需要放到应用工作目录中的文件的列表。这个参数一般用来放需要分发到各节点的 数据文件
+7. --py-files 需要添加到 PYTHONPATH 中的文件的列表。其中可以包含 .py、.egg 以及 .zip 文件
+8. --executor-memory 执行器进程使用的内存量，以字节为单位，或者直接使用10g，520m等
+9. --driver-memory 驱动器进程使用的内存量，以字节为单位，或者直接使用10g，520m等
+
+##### Spark集群管理器
+1. Spark自带的独立集群管理器
+2. YARN
+3. apache Mesos
 
