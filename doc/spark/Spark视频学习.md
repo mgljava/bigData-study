@@ -58,6 +58,17 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 2. Action：触发Transformation类算子执行，一个application中有几个Action算子，就有几个job
 3. 持久化算子：cache、persist、checkpoint
 
+##### 补充算子
+1. mapPartitionWithIndex: 带分区号的transform算子
+2. repartition:  从新分区，可以增加也可以减少，是将原来的rdd1重新分区为rdd2，两个rdd之间是宽依赖，有shuffle
+3. coalesce(numberPartition:Int, shuffle:Boolean):  numberPartition分区数，shuffle是否产生shuffle，默认为false 
+4. groupByKey: 针对二元组，根据key进行分组
+5. zip：针对两个KV搁置的rdd进行一对一压缩，所以必须保证两个RDD的每个分区数量是一样的
+6. zipWithIndex：给RDD中的每个元素与当前元素的下标压缩成一个KV格式的RDD
+7. countByKey: 对RDD中相同的key的元素计数
+8. countByValue: 对RDD中相同的元素计数，对整条数据计数
+9. reduce: 对RDD中的每个元素使用传递的逻辑去处理
+
 ##### RDD 的持久化
 1. cache：将数据缓存在内存中，懒执行算子，需要action触发
 2. persist: 手动指定持久化级别(StorageLevel)，懒执行算子，需要action触发
@@ -73,7 +84,7 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
   - 这个变量后不能直接跟 action算子，如 rdd1.cache().count()
 5. cache、persist、checkpoint持久化的单位都是 partition
 6. checkpoint执行流程
-  - 当application有action触发执行时，job执行完成之后，会从前回溯
+  - 当application有action触发执行时，job执行完成之后，会从前回溯 
   - 回溯去找有哪些RDD被checkpoint，对checkpoint的做标记
   - 回溯完成后，重新计算checkpoint RDD的数据，将结果写入checkpoint目录中
   - 切断RDD的依赖关系
