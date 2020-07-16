@@ -1,0 +1,4 @@
+{"name":"zhangsan","age":"20", "address":  {"home": "home zhangsan", "company": "company zhangsan"}}
+{"name":"lisi", "address":  {"home": "home lisi", "company": "company lisi"}}
+{"name":"wangwu","age":"18", "address":  {"home": "home wangwu", "company": "company wangwu"}}
+{"name":"zhaoliu","age":"19", "address":  {"home": "home zhaoliu", "company": "company zhaoliu"}}

@@ -194,5 +194,7 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 1. Hive承担计算和存储
 2. Spark作为执行引擎
 
-##### DataFrame
-1. 二维表格
+### DataFrame
+##### 创建DataFrame的方式
+1. 读取json格式的文件，DataFrame会按照 ascii码排序
+2. 

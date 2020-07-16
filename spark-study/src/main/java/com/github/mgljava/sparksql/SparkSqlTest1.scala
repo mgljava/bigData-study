@@ -33,5 +33,7 @@ object SparkSqlTest1 {
     dataFrame.createOrReplaceTempView("people")
     val sqlDf = spark.sql("select * from people where age>18")
     sqlDf.show()
+    import spark.implicits._
+    dataFrame.select($"name", $"age" + 1).show()
   }
 }
