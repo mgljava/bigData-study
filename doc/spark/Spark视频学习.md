@@ -177,3 +177,22 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
    ```
 3. 启动脚本：`sbin/stop-history-server.sh`
 4. 端口 18080
+
+## Spark SQL
+##### Spark SQL 和Shark的区别
+1. Spark SQL是Shark的演变
+2. Spark SQL不依赖Hive
+3. 可以查询原生的RDD
+4. 数据封装到 DataFrame，DataFrame可以转换为RDD
+
+##### Spark on Hive(SparkSQL)
+1. Hive作为存储
+2. SparkSQL作为计算
+3. 解析优化也是Spark在做
+
+##### Hive on Spark
+1. Hive承担计算和存储
+2. Spark作为执行引擎
+
+##### DataFrame
+1. 二维表格
