@@ -155,3 +155,25 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
   - 任务调度（发送任务，监控，回收结果等等）
 
 ##### mesos
+
+##### 端口
+1. 50070：HDFS WEBUI
+2. 9000：HDFS通信端口
+3. 8020：新版HDFS端口
+4. 8088：Yarn WebUI端口
+5. 2181：ZK
+6. 6379：Redis
+7. 60010：
+8. 9083： Hive
+9. 9092：Kafka
+
+##### Spark WebUI History配置
+1. 配置文件：spark-defaults.conf
+2. 配置内容
+```
+   spark.eventLog.enabled           true
+   spark.eventLog.dir               hdfs://vm01:9000/spark/data/log
+   spark.history.fs.logDirectory    hdfs://vm01:9000/spark/data/log
+   ```
+3. 启动脚本：`sbin/stop-history-server.sh`
+4. 端口 18080

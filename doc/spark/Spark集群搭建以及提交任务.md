@@ -40,3 +40,18 @@
 1. 找一台新机器
 2. 将master节点上的spark包拷贝到新机器上（该机器与spark集群没有关系），可以完全删除先前的配置
 3. 进入到 $SPARK_HOME，提交任务同上
+
+## Spark Master HA搭建
+1. 本地文件系统
+  - 存储元数据
+  - 需要每次手动切换Master
+  
+2. Zookeeper
+  - 存储元数据
+  - 自动选举
+
+3. 搭建过程
+  - 修改配置
+  - 分发配置
+  - 在主Master启动Spark集群
+  - 在备Master修改配置，然后使用命令：./start-master
