@@ -4,6 +4,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * 在 Scala 中累加空行
+ * 1. 累加器在Driver端定义并初始化
  */
 object AddBlank {
   def main(args: Array[String]): Unit = {
@@ -16,6 +17,7 @@ object AddBlank {
     val callSigns = file.flatMap(line => {
       if (line == "") {
         blankLines += 1
+        println("blankLines: " + blankLines)
         ""
       } else {
         valueLines += 1

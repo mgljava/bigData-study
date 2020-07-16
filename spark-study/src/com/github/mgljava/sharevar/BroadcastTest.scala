@@ -14,8 +14,8 @@ object BroadcastTest {
     val rdd1 = sc.textFile("")
     // 此后就可以使用该广播变量 signPrefixes
     val signPrefixes = sc.broadcast(loadCallSignTable())
-    val value = sc.broadcast(List("zhangsan", "list", "wangwu")) // 广播变量, 不能再executor中改变
-    val rdd2 = rdd1.filter(line => value.value.contains(line))
+    val nameBroadcast = sc.broadcast(List("zhangsan", "list", "wangwu")) // 广播变量, 不能再executor中改变
+    val rdd2 = rdd1.filter(line => nameBroadcast.value.contains(line))
     println(rdd2)
   }
 
