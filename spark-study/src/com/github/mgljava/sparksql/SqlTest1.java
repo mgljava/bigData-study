@@ -1,10 +1,8 @@
 package com.github.mgljava.sparksql;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 
 public class SqlTest1 {
