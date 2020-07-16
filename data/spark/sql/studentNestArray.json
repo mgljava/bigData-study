@@ -1,0 +1,4 @@
+{"name":"zhangsan","age":"20", "computer":  [{"cpu": "cpu1 zhangsan", "memory": "memory1 zhangsan"},{"cpu": "cpu2 zhangsan", "memory": "memory2 zhangsan"}]}
+{"name":"lisi", "age":"100","computer":  [{"cpu": "cpu1 lisi", "memory": "memory1 lisi"},{"cpu": "cpu2 lisi", "memory": "memory2 lisi"},{"cpu": "cpu3 lisi", "memory": "memory3 lisi"}]}
+{"name":"wangwu","age":"18", "computer":  [{"cpu": "cpu1 wangwu", "memory": "memory1 wangwu"},{"cpu": "cpu2 wangwu", "memory": "memory2 wangwu"}]}
+{"name":"zhaoliu","age":"19", "computer":  [{"cpu": "cpu1 zhaoliu", "memory": "memory1 zhaoliu"},{"cpu": "cpu2 zhaoliu", "memory": "memory2 zhaoliu"}]}
