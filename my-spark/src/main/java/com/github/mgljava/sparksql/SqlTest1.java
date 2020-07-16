@@ -18,7 +18,7 @@ public class SqlTest1 {
 
     SQLContext sqlContext = new SQLContext(sc);
     //  DataFrame dataFrame = sqlContext.read().format("json").load(path);
-    DataFrame dataFrame = sqlContext.read().json(path);
+    DataFrame dataFrame = sqlContext.jsonFile(path);
 
     /**
      * DataFrame 有数据、有列的schema

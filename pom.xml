@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>spark-study</module>
         <module>hive-study</module>
+        <module>my-spark</module>
     </modules>
     <properties>
         <scala.binary.version>2.10</scala.binary.version>
@@ -78,24 +78,7 @@
             <version>3.1.2</version>
         </dependency>
 
-        <!-- Apache Spark -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.10</artifactId>
-            <version>[2.2.2,)</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.10</artifactId>
-            <version>[2.2.2,)</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_2.10</artifactId>
-            <version>[2.2.2,)</version>
-        </dependency>
 
         <!-- Apache HBase -->
         <dependency>
@@ -118,7 +101,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-scala_2.10</artifactId>
             <version>2.6.5</version>
@@ -140,7 +123,7 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>

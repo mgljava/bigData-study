@@ -14,7 +14,7 @@ object SparkSQLJsonTest {
       println(item)
     })*/
     val sqlContext = new SQLContext(sc)
-    val result = sqlContext.read.json("./data/spark/sql/user.json")
+    val result = sqlContext.jsonFile("./data/spark/sql/user.json")
     result.foreach(row => {
       println(row.get(1))
     })
