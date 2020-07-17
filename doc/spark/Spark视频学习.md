@@ -193,6 +193,11 @@ SparkSQL是一个支持使用SQL查询分布式数据的组件
 2. SparkSQL作为计算
 3. 解析优化也是Spark在做
 
+##### Spark 配置Hive
+1. 配置MetaStore
+2. 把hive-sit.xml 拷贝到spark的conf目录
+3. 打包SparkOnHiveTest程序到集群上运行
+
 ##### Hive on Spark
 1. Hive承担计算和存储
 2. Spark作为执行引擎
