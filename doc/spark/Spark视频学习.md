@@ -179,6 +179,9 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 4. 端口 18080
 
 ## Spark SQL
+### 概念
+SparkSQL是一个支持使用SQL查询分布式数据的组件
+
 ##### Spark SQL 和Shark的区别
 1. Spark SQL是Shark的演变
 2. Spark SQL不依赖Hive
@@ -195,6 +198,26 @@ RDD(Resilient Distributed Dataset), 弹性分布式数据集
 2. Spark作为执行引擎
 
 ### DataFrame
+DataFrame 可以转换为RDD
+
 ##### 创建DataFrame的方式
 1. 读取json格式的文件，DataFrame会按照 ascii码排序
-2. 
+  - 读取标准的json格式文件
+  - 读取嵌套的json格式文件
+2. 读取json格式的RDD或者DataSet
+3. 读取RDD创建DataFrame
+  - 反射的方式：首先将RDD转换成某种类型的RDD(case class)，再次将rdd.toDF()
+  - 动态创建Schema：动态创建的Row中的数据顺序要与创建Schema的列一致
+4. 读取parquet格式数据加载DataFrame：spark.read.parquet(path)
+5. 读取MySQL中的数据加载成DataFrame
+6. 读取Hive中的数据加载DataFrame
+
+##### 保存DataFrame的方式
+1. 将DataFrame保存为parquet文件
+2. 将DataFrame保存到MySQL表中：dataFrame.write.mode(SaveMode.Append).jdbc(url, table, connectionProperties)
+3. 将DataFrame保存到Hive表
+
+### RDD和Dataset的区别
+1. todo
+
+### UDF

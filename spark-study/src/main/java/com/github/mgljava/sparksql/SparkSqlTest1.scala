@@ -1,6 +1,7 @@
 package com.github.mgljava.sparksql
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.{Row, SparkSession}
 
 /**
  * DataFrame 有数据、有列的schema
@@ -33,7 +34,14 @@ object SparkSqlTest1 {
     dataFrame.createOrReplaceTempView("people")
     val sqlDf = spark.sql("select * from people where age>18")
     sqlDf.show()
-    import spark.implicits._
-    dataFrame.select($"name", $"age" + 1).show()
+
+    /*import spark.implicits._
+    dataFrame.select($"name", $"age" + 1).show()*/
+
+    // ToRDD
+    val rdd: RDD[Row] = dataFrame.rdd
+    rdd.map(row => {
+      println(row)
+    })
   }
 }
