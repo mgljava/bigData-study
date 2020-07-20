@@ -226,3 +226,16 @@ DataFrame 可以转换为RDD
 1. todo
 
 ### UDF
+
+## Spark Streaming
+### SparkStreaming的概念
+1. SparkStreaming是7*24小时不间断运行，SparkStreaming启动之后，首先会启动一个job，这个job有一个task来接收数据，task每隔一段时间将接收来的数据封装到一个batch，"这段时间"就是batchInterval。
+  生产的batch又被封装到一个RDD中，这个RDD又被封装到一个DStream中，SparkStreaming底层操作的就是DStream，DStream有自己的transformation类算子（懒执行），需要DStream的outputOperator类算子触发执行
+2. 因为这个间隔时间，会造成集群资源浪费的情况和数据堆积的情况。如果数据落地磁盘，又会加大数据处理的延迟度
+3. 最好状态就是：batchInterval = 5s，那么集群处理一批次数据时间也是5s
+
+### SparkStream和Storm的区别
+1. Storm是纯实时处理数据，SparkStreaming是微批处理数据（有时间间隔的概念），但是可以通过时间间隔来做到实时处理，SparkStreaming相对Storm来说，吞吐量大
+2. Storm擅长处理简单的汇总型业务，SparkStreaming擅长处理复杂的业务，Storm相对于SparkStreaming来说更加轻量级，SparkStreaming中可以使用core或者sql或者机器学习等等
+3. Storm的事务与SparkStreaming不同，SparkStreaming可以管理事务
+4. Storm支持动态的资源调度，Spark也是支持
