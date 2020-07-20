@@ -239,3 +239,7 @@ DataFrame 可以转换为RDD
 2. Storm擅长处理简单的汇总型业务，SparkStreaming擅长处理复杂的业务，Storm相对于SparkStreaming来说更加轻量级，SparkStreaming中可以使用core或者sql或者机器学习等等
 3. Storm的事务与SparkStreaming不同，SparkStreaming可以管理事务
 4. Storm支持动态的资源调度，Spark也是支持
+
+### Driver HA
+1. 在提交任务的时候指定参数 --supervise，如果Driver挂掉，会自动启动一个Driver
+2. 代码层面恢复
