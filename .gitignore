@@ -31,3 +31,4 @@ doc/ignoreImages
 
 ### VS Code ###
 .vscode/
+/data/spark/streaming/UpdateStateByKey/
