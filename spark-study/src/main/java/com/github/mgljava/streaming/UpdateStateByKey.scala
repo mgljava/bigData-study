@@ -35,7 +35,7 @@ object UpdateStateByKey {
 
     /**
      * currentValue: 当前批次某个key所对应的状态值
-     * preValue:
+     * preValue: 以往批次当前key对应的总状态值
      */
     val result: DStream[(String, Int)] = pairWords.updateStateByKey((currentValue: Seq[Int], preValue: Option[Int]) => {
       var total = 0
