@@ -213,3 +213,7 @@ spark-submit提交作业的一般格式：`bin/spark-submit [options] <app jar |
   - 执行器节点的内存大小、每个执行器节点占用的核心数、执行器节点总数
   - Spark 还要用到本地磁盘来存储数据混洗操作的中间数据
   - 存储溢写到磁盘中的 RDD 分区数据
+  
+### 第九章 Spark SQL
+SparkSQL提供如下功能
+1. 
