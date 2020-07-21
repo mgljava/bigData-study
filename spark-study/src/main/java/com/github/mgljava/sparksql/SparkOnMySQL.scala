@@ -30,6 +30,7 @@ object SparkOnMySQL {
     val jdbcDF = spark.read
       .jdbc("jdbc:mysql://localhost:3306/fund", "funds", connectionProperties)
     jdbcDF.show()
+    jdbcDF.explain(true) // 打印执行计划
     println("-------")
     val l = jdbcDF.rdd
       .map(item => item.get(4))

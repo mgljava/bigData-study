@@ -216,4 +216,65 @@ spark-submit提交作业的一般格式：`bin/spark-submit [options] <app jar |
   
 ### 第九章 Spark SQL
 SparkSQL提供如下功能
-1. 
+1. Spark SQL 可以从各种结构化数据源(例如 JSON、Hive、Parquet 等)中读取数据
+2. Spark SQL 不仅支持在 Spark 程序内使用 SQL 语句进行数据查询，也支持从类似商业 智能软件 Tableau 这样的外部工具中通过标准数据库连接器(JDBC/ODBC)连接 Spark SQL 进行查询。
+3. 当在 Spark 程序内使用 Spark SQL 时，Spark SQL 支持 SQL 与常规的 Python/Java/Scala 代码高度整合，包括连接 RDD 与 SQL 表、公开的自定义 SQL 函数接口等
+
+### Spark Streaming
+##### 核心元素：DStream
+DStream 是一个持续的 RDD 序列
+
+##### 架构
+1. Spark Streaming 使用“微批次”的架构，把流式计算当作一系列连续的小规模批处理来对待
+2. 每个输入批次都形成一个 RDD，以 Spark 作业的方式处理并生成其他的 RDD。 处理的结果可以以批处理的方式传给外部系统
+3. 你可以从外部输入源创建 DStream，也可以对其他 DStream 应用进行转化操作得到新的DStream
+
+##### 转化操作
+1. 无状态转化操作：在无状态转化操作中，每个批次的处理不依赖于之前批次的数据
+  - map
+  - count
+  - transform等等
+
+2. 有状态转化操作：有状态转化操作需要使用之前批次的数据或者是中间结果来计算当前批次的数据
+  - 滑动窗口：以一个时间阶段为滑动窗口进行操作
+  - updateStateByKey：用来跟踪每个键的状态变化
+  - 有状态的转化操作需要借助checkpoint来实现，以确保容错性
+  - window()
+  - reduceByWindow() / reduceByKeyAndWindow()
+  - countByWindow() / countByValueAndWindow()
+
+##### 输出操作
+1. foreachRDD()：它用来对 DStream 中的RDD运行任意计算
+2. print()
+3. saveAsHadoopFiles()/saveAsTextFiles("outputDir", "txt")
+
+##### 输入源
+1. Socket
+2. 文件
+3. Apache Kafka
+4. Apache Flume
+5. 多数据源与集群规模：使用union()这样的操作可以将多个DStream合并
+
+##### 7 * 24 小时不间断运行
+1. 检查点机制 ssc.checkpoint("hdfs://...")
+  - 控制发生失败时需要重算的状态数
+  - 提供驱动器程序容错
+2. 驱动器程序容错：驱动器程序的容错要求我们以特殊的方式创建 StreamingContext。我们需要把检查 点目录提供给 StreamingContext。与直接调用 new StreamingContext 不同，应该使用 StreamingContext.getOrCreate() 函数
+3. --supervise 标记来让 Spark 重启失败的驱动器程序
+4. 工作节点容错
+5. 接收器容错：如果这样的节点发生错误，Spark Streaming 会在集群中别的节点上重启失败的接收器
+6. 处理保证：由于 Spark Streaming 工作节点的容错保障，Spark Streaming 可以为所有的转化操作提供 “精确一次”执行的语义
+
+##### Spark Streaming性能考量
+1. 批次和窗口大小：总的来说，500 毫秒已经被证实为对许多应用而言是比较好的最小批次大小。寻找最小批次大小的最佳实践是从一个比较大的批次大小(10 秒左右)开始，不断使用更小的批次大小
+2. 并行度：减少批处理所消耗时间的常见方式还有提高并行度。有以下三种方式可以提高并行度
+  - 增加接收器的数目：加接收器数目，然后使用 union 来把数据合并为一个数据源。
+  - 将收到的数据显式地重新分区：通过使用 DStream.repartition 来显式重新分区输入流(或者合并多个流得到的数据流)来重新分配收到的数据
+  - 提高聚合计算的并行度：对于像 reduceByKey() 这样的操作，你可以在第二个参数中指定并行度
+3. 垃圾回收和内存使用
+  - 配置参数 spark.executor.extraJavaOptions 中添加 -XX:+UseConcMarkSweepGC
+  - spark-submit --conf spark.executor.extraJavaOptions=-XX:+UseConcMarkSweepGC App.jar
+4. 减少GC压力
+  - 把 RDD 以序列化的格式缓存
+  - 使用 Kryo 序列化
+5. 移除缓存：Spark默认采用LRU缓存，如果设置了spark.cleaner.ttl 那么spark会显示的移除超出给定时间范围的RDD
