@@ -243,3 +243,23 @@ DataFrame 可以转换为RDD
 ### Driver HA
 1. 在提交任务的时候指定参数 --supervise，如果Driver挂掉，会自动启动一个Driver
 2. 代码层面恢复
+
+## Kafka
+#### 概念
+1. Kafka：Kafka是分布式消息系统，默认消息时存储磁盘，保存7天
+2. Producer：消息生产者，两种机制
+  - 轮询：如果key为null，就按hash
+  - key的hash：如果key非null，就按key的hash
+3. Broker：组成Kafka集群的节点，broker之间没有主从关系，依赖ZK协调，broker负责消息读写和存储。每个broker可以管理多个partition
+4. Topic：一类消息/消息队列，每个topic由多个partition组成，可以在创建时指定，多个partition是为了提高并行度
+5. Partition：组成Topic的单元
+  - 直接接触磁盘，消息时append到每个partition上的
+  - 每个partition内部消息是强有序的。FIFO
+  - 每个partition有几个副本来保证数据冗余是可以在创建时指定的
+6. Consumer
+  - 每个consumer都有自己的消费者组
+  - 每个消费者组在消费同一topic时，这个topic中的数据只能被消费一次
+  - 不同的消费者组消费同一topic互不影响
+  - kafka0.8之前consumer是自己在zk中维护消费者的offset
+  - kafka0.8之后是由集群维护consumer的offset
+7. Zookeeper：存储元数据、broker、topic、partition

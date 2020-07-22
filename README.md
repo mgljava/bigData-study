@@ -14,4 +14,7 @@
 
 ### Spark
 1. [Spark集群搭建和提交任务](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark集群搭建以及提交任务.md)
-2. [Spark快速大数据分析](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark快速大数据分析读书笔记.md)
+
+#### 图书
+1. [Spark快速大数据分析](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark快速大数据分析读书笔记.md) 已读完
+2. [图解Spark](https://github.com/mgljava/bigData-study/blob/master/doc/spark/图解Spark.md)
