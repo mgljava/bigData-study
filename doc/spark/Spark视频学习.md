@@ -263,3 +263,13 @@ DataFrame 可以转换为RDD
   - kafka0.8之前consumer是自己在zk中维护消费者的offset
   - kafka0.8之后是由集群维护consumer的offset
 7. Zookeeper：存储元数据、broker、topic、partition
+
+### SparkStreaming和Kafka整合有两种模式
+##### SparkStreaming+Kafka Receiver模式
+1. 采用了receiver接收器的模式，需要一个task一直处于占用接收数据，接收来的数据存储级别为 MEMORY_AND_DISK_SER_2
+2. 该模式几乎不用，存在数据丢失问题
+  - 当接收完消息后，更新完zookeeper 中的offset后，如果Driver挂掉，Driver下的Executor也会被kill掉，在Executor内存中的数据会有丢失
+  - 解决数据丢失问题：开启WAL(Write Ahead Log)机制，预写日志机制，当Executor备完数据之后，向HDFS中也备份一份数据，备份完成之后，再去更新消费者的offset
+  - 开启WAL机制带来了新的问题：延时变大
+
+##### SparkStreaming+Kafka Direct模式

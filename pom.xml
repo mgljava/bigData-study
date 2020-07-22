@@ -11,6 +11,7 @@
     <modules>
         <module>hive-study</module>
         <module>spark-study</module>
+        <module>spark-streaming</module>
     </modules>
     <properties>
         <scala.binary.version>2.10</scala.binary.version>
