@@ -1,6 +1,6 @@
 package com.github.mgljava.sparksql
 
-import org.apache.spark.sql.{SaveMode, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 /**
  * Spark 操作Hive
@@ -28,7 +28,7 @@ object SparkOnHiveTest {
     spark.sql("drop table if exists good_student_infos")
 
     // 写入Hive数据库
-    val dataFrame = spark.sql("select si.name,si.age,ss.score from student_infos si, student_scores ss where si.name = ss.name")
+    val dataFrame: DataFrame = spark.sql("select si.name,si.age,ss.score from student_infos si, student_scores ss where si.name = ss.name")
     dataFrame.write.mode(SaveMode.Overwrite).saveAsTable("good_student_infos")
   }
 }
