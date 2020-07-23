@@ -273,3 +273,5 @@ DataFrame 可以转换为RDD
   - 开启WAL机制带来了新的问题：延时变大
 
 ##### SparkStreaming+Kafka Direct模式
+1. 手动异步来更新offset
+2. 通过redis来管理offset
