@@ -47,6 +47,7 @@ object ManagerOffsetUseRedis {
 
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setMaster("local").setAppName("ManagerOffsetUseRedis")
+    // 设置每个分区每秒读取多少数据
     conf.set("spark.streaming.kafka.maxRatePerPartition", "10")
     val ssc = new StreamingContext(conf, Durations.seconds(5))
     ssc.sparkContext.setLogLevel("Error")
