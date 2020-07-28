@@ -31,3 +31,5 @@
 
 --- 知识点
 1. 搭建HBase集群
+2. protobuf
+3. mr
