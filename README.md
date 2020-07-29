@@ -8,9 +8,12 @@
 
 ### Hive
 1. [Hive编程指南](https://github.com/mgljava/bigData-study/blob/master/doc/hive/Hive编程指南读书笔记.md)
-1. [Hive实现Word Count](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/wordcount.hql)
-1. [Hive实现数据动态分区](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/dynamic_partition.hql)
-1. [Hive实现分桶表](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/hive_bucket.hql)
+2. [Hive实现Word Count](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/wordcount.hql)
+3. [Hive实现数据动态分区](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/dynamic_partition.hql)
+4. [Hive实现分桶表](https://github.com/mgljava/bigData-study/blob/master/src/main/hive/hive_bucket.hql)
+
+### HBase
+1. [HBase集群安装](https://github.com/mgljava/bigData-study/blob/master/doc/hbase/HBase集群搭建.md)
 
 ### Spark
 1. [Spark集群搭建和提交任务](https://github.com/mgljava/bigData-study/blob/master/doc/spark/Spark集群搭建以及提交任务.md)
