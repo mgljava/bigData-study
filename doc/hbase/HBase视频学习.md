@@ -28,6 +28,7 @@
   - StoreFile等于HFile，StoreFile是HFile的封装，StoreFile是HBase层面，HFile是Hadoop层面
 
 #### HBase架构设计
+![HBase架构图](https://github.com/mgljava/bigData-study/blob/master/doc/images/HBase架构图.png)
 
 --- 知识点
 1. 搭建HBase集群
