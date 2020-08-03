@@ -13,6 +13,7 @@
         <module>spark-study</module>
         <module>spark-streaming</module>
         <module>hbase-study</module>
+        <module>zookeeper-study</module>
     </modules>
     <properties>
         <scala.binary.version>2.10</scala.binary.version>
